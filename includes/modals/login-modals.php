@@ -14,7 +14,7 @@
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close-button" onclick="closeModal()">&times;</span>
-            <h2>Sign In / Sign Up</h2>
+            <h2><b style="color: Red;">Book with us!</b></h2>
             
             <!-- Login Form -->
             <div id="login-form" class="form-container">
@@ -22,9 +22,9 @@
                 <form action="actions/login.php" method="POST">
                 <input type="text" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Password" required>
-                    <button type="submit">Login</button>
+                <button type="submit">Login</button>
                 </form>
-                <p>Don't have an account? <a href="#" onclick="switchToSignup()">Sign Up</a></p>
+    <p>Don't have an account? <a href="#" onclick="switchToSignup()">Sign Up</a></p>
             </div>
 
             <!-- Signup Form -->
@@ -34,13 +34,11 @@
                     <input type="text" name="name" placeholder="Full Name" required>
                     <input type="email" name="email" placeholder="Email" required>
                     <input type="password" name="password" placeholder="Password" required>
-                    <!-- phone -->
                      <input type="number" name="phone" placeholder="phone" required>
-                     <!-- address -->
-                      <input type="text" name="address" placeholder="address" required>
+                    <input type="text" name="address" placeholder="address" required>
                     <button type="submit" name="signup">Sign Up</button>
                 </form>
-                <p>Already have an account? <a href="#" onclick="switchToLogin()">Login</a></p>
+    <p>Already have an account? <a href="#" onclick="switchToLogin()">Login</a></p>
             </div>
         </div>
     </div>

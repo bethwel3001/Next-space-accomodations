@@ -24,6 +24,7 @@ header {
 }
 
 header .logo {
+    color: #e20808;
     font-size: 24px;
     font-weight: bold;
 }
@@ -63,13 +64,14 @@ header nav ul li a {
 }
 
 .hero-overlay h1 {
-    font-size: 3em;
+    color: #3498db;
+    font-size: 2.5em;
     margin-bottom: 20px;
 }
 
 .hero-overlay p {
-    font-size: 1.2em;
-    margin-bottom: 20px;
+font-size: 2em;    
+margin-bottom: 20px;
 }
 
 .cta-button {
@@ -88,33 +90,36 @@ header nav ul li a {
 }
 
 /* Slide Images */
-/* Slider Animation */
-.slide-container {
-    position: absolute;
-    top: 0;
-    left: 0;
+.slide-container{
     width: 100%;
     height: 100%;
-    z-index: 0;
-    overflow: hidden;
-}
+    box-shadow: 20px 20px 10px gray;
+    animation: slider 10s linear infinite;
 
-.slide {
-    display: none;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    animation: slideIn 1s ease-in-out;
 }
-
-.slide.active {
-    display: block;
+@keyframes slider {
+0% {
+        background-image: url(https://media.istockphoto.com/id/2108539552/photo/half-opened-door-of-hotel-room-with-blurred-luxury-bedroom-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=LQqbvqJDqgNO9xWyOmkSoE4jMgmdVEbVz6_zo2cIjqs=);
+        background-size: cover;
+    }
+    30% {
+        background-image: url(https://images.unsplash.com/photo-1444201983204-c43cbd584d93?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGhvdGVsJTIwcm9vbXN8ZW58MHx8MHx8fDA%3D);
+        background-size: cover;
+    }
+    60% {
+    background-image: url(https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGhvdGVsJTIwcm9vbXN8ZW58MHx8MHx8fDA%3D);
+    background-size: cover;
+    }
+    100% {
+        background-image: url(https://images.unsplash.com/photo-1515362778563-6a8d0e44bc0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGhvdGVsJTIwcm9vbXN8ZW58MHx8MHx8fDA%3D);
+        background-size: cover;
+    }
+    
 }
-
 @keyframes slideIn {
     from { opacity: 0; transform: scale(1.05); }
     to { opacity: 1; transform: scale(1); }
-}
+} 
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -123,8 +128,10 @@ header nav ul li a {
 /* About Section */
 .about {
     padding: 50px 20px;
-    background-color: aqua;
+    background-image: url(https://images.unsplash.com/photo-1439130490301-25e322d88054?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
     height: 100vh;
+    background-size: cover;
+    filter: blur(px);
     text-align: center;
     opacity: 0;
     transition: transform 0.3s, opacity 1s;
@@ -135,10 +142,12 @@ header nav ul li a {
 .about h2 {
     font-size: 2.5em;
     margin-bottom: 20px;
+    color: white ;
 }
 
 .about p {
-    font-size: 1.2em;
+    font-size: 1.4em;
+    color: white ;
     line-height: 1.6;
     max-width: 800px;
     margin: 0 auto;
@@ -249,7 +258,8 @@ header nav ul li a {
     padding: 50px 20px;
     text-align: center;
     height: 100vh;
-    background-color: #f8f8f8;
+    background-color: #585858;
+    background-color: cover; 
 }
 
 .contact h2 {
@@ -290,14 +300,17 @@ header nav ul li a {
 
 /* Social Icons */
 .social-icons {
+    /* background-color: #e64a19; */
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
 .social-icons a {
-    color: #333;
-    font-size: 1.5em;
+    color: green;
+    margin-top: 20px;
+    border-radius: 10%;
+    font-size: 20px;
     margin: 0 10px;
     transition: color 0.3s;
 }

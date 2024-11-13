@@ -16,7 +16,7 @@
 <body>
     <!-- Navbar -->
     <header class="navbar">
-        <div class="logo">Hotel Booking</div>
+        <div class="logo">Next-space</div>
         <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
@@ -28,10 +28,9 @@
         </nav>
     </header>
     <!-- Include Login Modal -->
-    <?php include 'includes/modals/login-modals.php'; ?>
+    <?php include __DIR__ . '/modals/login-modals.php'; ?>
 
     <!-- Link to header-specific JS -->
-    <script src="assets/js/main.js"></script>
     <script src="assets/js/modal.js"></script>
 </body>
 </html>
