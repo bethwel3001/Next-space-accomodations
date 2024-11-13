@@ -3,40 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login/Signup to NextSpace</title>
+    
+    <!-- Link the modals.css -->
+    <link rel="stylesheet" href="../assets/css/modal.css"> <!-- Adjust path if needed -->
+
 </head>
 <body>
-    <!-- includes/modals/login-modal.php -->
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close-button" onclick="closeModal()">&times;</span>
-        <h2>Sign In</h2>
-        <div id="login-popup" class="popup" style="display: none;">
-    <form action="login.php" method="POST" class="login-form">
-        <h2>Login</h2>
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-    </form>
-</div>
+    <!-- Modal for Login/Signup -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2>Sign In / Sign Up</h2>
+            
+            <!-- Login Form -->
+            <div id="login-form" class="form-container">
+                <h3>Login</h3>
+                <form action="login.php" method="POST">
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p>Don't have an account? <a href="#" onclick="switchToSignup()">Sign Up</a></p>
+            </div>
 
-        <p>Don't have an account? <a href="#" onclick="switchToSignup()">Sign Up</a></p>
+            <!-- Signup Form -->
+            <div id="signup-form" class="form-container" style="display: none;">
+                <h3>Sign Up</h3>
+                <form action="actions/signup.php" method="POST">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit" name="signup">Sign Up</button>
+                </form>
+                <p>Already have an account? <a href="#" onclick="switchToLogin()">Login</a></p>
+            </div>
+        </div>
     </div>
-</div>
 
-<div id="signupModal" class="modal">
-    <div class="modal-content">
-        <span class="close-button" onclick="closeModal()">&times;</span>
-        <h2>Sign Up</h2>
-        <form action="actions/signup.php" method="POST">
-            <input type="text" name="name" placeholder="Full Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit" name="signup">Sign Up</button>
-        </form>
-        <p>Already have an account? <a href="#" onclick="switchToLogin()">Login</a></p>
-    </div>
-</div>
-<script src="../assets/js.scripts.js"></script>
+    <!-- Link JavaScript file -->
+<script src="../assets/js/modals.js"></script>
+
 </body>
 </html>
