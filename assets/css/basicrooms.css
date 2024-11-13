@@ -1,32 +1,3 @@
-
-/* Basic rooms page styles */
-.room-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.room-box {
-    width: 30%;
-    margin: 15px;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.room-box h3 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.room-box button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+body{
+    background-color: #000000;
 }

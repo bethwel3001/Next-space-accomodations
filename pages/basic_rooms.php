@@ -1,7 +1,13 @@
-<!-- pages/basic_rooms.php -->
-<!-- Header.php -->
-<link rel="stylesheet" href="assets/css/header.css">
-<link rel="stylesheet" href="assets/css/basicrooms.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baic-rooms</title>
+    <link rel="stylesheet" href="assets/css/basicrooms.css">
+</head>
+<body>
+    <!-- pages/basic_rooms.php -->
 <!-- Basic Rooms Page -->
 <?php
 session_start();
@@ -42,3 +48,6 @@ $result = $conn->query($sql);
 </section>
 
 <?php include('../includes/footer.php'); ?>
+
+</body>
+</html>

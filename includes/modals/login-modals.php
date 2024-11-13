@@ -19,9 +19,9 @@
             <!-- Login Form -->
             <div id="login-form" class="form-container">
                 <h3>Login</h3>
-                <form action="login.php" method="POST">
-                    <input type="text" name="username" placeholder="Username" required>
-                    <input type="password" name="password" placeholder="Password" required>
+                <form action="actions/login.php" method="POST">
+                <input type="text" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
                     <button type="submit">Login</button>
                 </form>
                 <p>Don't have an account? <a href="#" onclick="switchToSignup()">Sign Up</a></p>
@@ -34,6 +34,10 @@
                     <input type="text" name="name" placeholder="Full Name" required>
                     <input type="email" name="email" placeholder="Email" required>
                     <input type="password" name="password" placeholder="Password" required>
+                    <!-- phone -->
+                     <input type="number" name="phone" placeholder="phone" required>
+                     <!-- address -->
+                      <input type="text" name="address" placeholder="address" required>
                     <button type="submit" name="signup">Sign Up</button>
                 </form>
                 <p>Already have an account? <a href="#" onclick="switchToLogin()">Login</a></p>

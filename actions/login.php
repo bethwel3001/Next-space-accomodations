@@ -1,37 +1,28 @@
 <?php
-// actions/login.php
-session_start();
 include('../config/database.php');
 
-if (isset($_POST['login'])) {
-    $email = $conn->real_escape_string($_POST['email']);
-    $password = $_POST['password'];
+// Get form data
+$email = $_POST['email']; // Use 'email' instead of 'username'
+$password = $_POST['password'];
 
-    // Fetch user from database
-    $sql = "SELECT * FROM users WHERE email='$email'";
-    $result = $conn->query($sql);
+// Query to check if the email exists
+$query = $conn->prepare("SELECT * FROM users WHERE email = :email");
+$query->bindParam(':email', $email);
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        // Verify password
-        if (password_verify($password, $user['password'])) {
-            // Set session variables
-            $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['name'] = $user['name'];
-            $_SESSION['email'] = $user['email'];
-            // Redirect to homepage
-            header("Location: ../index.php");
-        } else {
-            // Invalid password
-            $_SESSION['error'] = "Invalid email or password.";
-            header("Location: ../index.php#home");
-        }
+if ($query->execute()) {
+    $user = $query->fetch(PDO::FETCH_ASSOC);
+
+    // Check if user exists and verify password
+    if ($user && password_verify($password, $user['password'])) {
+        // Successfully logged in
+        session_start();
+        $_SESSION['username'] = $user['name']; // Store the full name or username in the session
+        header("Location: ../index.php"); // Redirect to home page after login
     } else {
-        // User not found
-        $_SESSION['error'] = "Invalid email or password.";
-        header("Location: ../index.php#home");
+        // Invalid login credentials
+        echo "Invalid login credentials!";
     }
 } else {
-    header("Location: ../index.php#home");
+    echo "Error executing query!";
 }
 ?>

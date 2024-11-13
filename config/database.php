@@ -1,16 +1,21 @@
 <?php
-// config/database.php
+// Database connection details
+$host = 'localhost';          // Database host (e.g., 'localhost' or an IP address)
+$dbname = 'hotel_booking'; // Your database name
+$username = 'root'; // Your database username
+$password = ''; // Your database password
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "hotel_booking";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Try to establish a PDO connection
+try {
+    // Create a PDO instance
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    
+    // Set the PDO error mode to exception to get detailed error messages
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    echo "Connected successfully"; // Optional: for testing the connection
+} catch (PDOException $e) {
+    // Handle connection error
+    echo "Connection failed: " . $e->getMessage();
 }
 ?>
