@@ -68,7 +68,7 @@ For MySQL database setup, refer to [MySQL Documentation](https://dev.mysql.com/d
 1. **XAMPP/WAMP**: Install XAMPP or WAMP to set up a local server environment.
 2. **Clone the Repository**: Clone the repository to your local machine.
     ```bash
-    git clone https://github.com/your-username/hotel-booking-system.git
+    git clone https://github.com/bethwel3001/Hotel-book.git
     ```
 
 ### Installation
@@ -122,5 +122,7 @@ Contributions are welcome! To contribute:
 - Thanks to everyone who contributed to testing and debugging the project!
 
 *Dev Bethwel Kiplagat*
+*&* *Collins Onde*
+*Email: kiplagatbethwel@gmail.com*
 ********************************
 *Leave a like!*
