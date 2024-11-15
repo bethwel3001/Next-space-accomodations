@@ -17,7 +17,7 @@ if ($query->execute()) {
         // Successfully logged in
         session_start();
         $_SESSION['username'] = $user['name']; // Store the full name or username in the session
-        header("Location: ../index.php"); // Redirect to home page after login
+        header("Location: ../index.php#services");
     } else {
         // Invalid login credentials
         echo "Invalid login credentials!";

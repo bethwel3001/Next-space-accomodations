@@ -22,12 +22,12 @@ $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <header class="header">
         <div class="container">
             <div class="logo">
-                <h1>Available premium Rooms</h1>
+                <h1>Available Rooms</h1>
             </div>
             <nav class="nav">
                 <a href="../index.php">Home</a>
-                <a href="../about.php">About</a>
-                <a href="../contact.php">Contact</a>
+                <a href="../index.php">About</a>
+                <a href="../index.php">Contact</a>
                 <div class="user-menu">
                     <i class="fas fa-user-circle user-icon"></i>
                     <div class="dropdown">
@@ -47,7 +47,7 @@ $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Main Section -->
     <section class="rooms-section">
-        <h2>Premium Rooms @Next-space</h2>
+        <h2>Please book a room below:</h2>
         <div class="rooms-container">
             <?php if (count($rooms) > 0): ?>
                 <?php foreach ($rooms as $room): ?>

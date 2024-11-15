@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login/Signup to NextSpace</title>
+    <title>Login - Signup</title>
     
     <!-- Link the modals.css -->
     <link rel="stylesheet" href="../assets/css/modal.css"> <!-- Adjust path if needed -->
@@ -14,7 +14,7 @@
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close-button" onclick="closeModal()">&times;</span>
-            <h2><b style="color: Red;">Book with us!</b></h2>
+            <h2><b style="color: Red;">Welcome!</b></h2>
             
             <!-- Login Form -->
             <div id="login-form" class="form-container">

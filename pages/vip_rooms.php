@@ -22,7 +22,7 @@ $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <header class="header">
         <div class="container">
             <div class="logo">
-                <h1>Available VIP Rooms</h1>
+                <h1>Available Rooms</h1>
             </div>
             <nav class="nav">
                 <a href="../index.php">Home</a>
@@ -47,7 +47,7 @@ $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Main Section -->
     <section class="rooms-section">
-        <h2>VIP Rooms @Next-space</h2>
+        <h2>Please book a room below:</h2>
 
         <!-- Rooms Container -->
         <div class="rooms-container">

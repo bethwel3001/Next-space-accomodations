@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Footer</title>
 </head>
 <body>
     <style>
@@ -54,10 +54,10 @@
 <footer class="footer">
     <div class="column">
         <h4>Quick Links</h4>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
+        <a href="../index.php">Home</a>
+        <a href="../index.php">About</a>
+        <a href="../index.php">Services</a>
+        <a href="../index.php">Contact</a>
     </div>
     <div class="column">
         <h4>Connect with Us</h4>
