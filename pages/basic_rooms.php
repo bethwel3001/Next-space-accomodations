@@ -1,5 +1,4 @@
 <?php
-session_start();
 include('../config/database.php');
 
 // Fetch basic rooms from the database
@@ -23,7 +22,7 @@ $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <header class="header">
         <div class="container">
             <div class="logo">
-                <h1>Available basic Rooms</h1>
+                <h1>Available Basic Rooms</h1>
             </div>
             <nav class="nav">
                 <a href="../index.php">Home</a>
@@ -58,12 +57,20 @@ $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <p>Room Number: <?php echo htmlspecialchars($room['room_number']); ?></p>
                         <p>Category: <?php echo htmlspecialchars($room['category']); ?></p>
                         <p>Price: $<?php echo htmlspecialchars($room['price']); ?></p>
-                        <h3>
+                        <h3><?php echo htmlspecialchars($room['features']); ?></h3>
+
+                        <!-- Booking Form -->
+                        <form action="book_room.php" method="POST">
+                            <input type="hidden" name="room_id" value="<?php echo htmlspecialchars($room['room_id']); ?>">
                             
-                            <?php echo htmlspecialchars($room['features']); ?>
-                        
-                        </h3>
-                        <button class="book-now">Book Now</button>
+                            <label for="name">Full Name:</label>
+                            <input type="text" id="name" name="name" required>
+                            
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                            
+                            <button type="submit" class="book-now">Book Now</button>
+                        </form>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>

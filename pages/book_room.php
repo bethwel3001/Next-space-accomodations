@@ -1,43 +1,32 @@
 <?php
-session_start();
-include('config/database.php');
+include('../config/database.php');
 
-// Check if the user is logged in, otherwise redirect to login page
-if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
-    exit();
-}
-
-// Check if room_id is provided through POST
-if (isset($_POST['room_id'])) {
+// Process the booking if POST request is received
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Get the room_id and user data from POST
     $room_id = $_POST['room_id'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
 
-    // Fetch room details from the database
-    $sql = "SELECT * FROM rooms WHERE room_id = :room_id";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute(['room_id' => $room_id]);
+    // Get room details from the database
+    $stmt = $conn->prepare("SELECT room_id, price, room_number FROM rooms WHERE room_id = ?");
+    $stmt->execute([$room_id]);
     $room = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Ensure room exists
     if ($room) {
-        // Show booking confirmation form (name, email, phone, etc.)
-        echo "<h2>Booking Room " . htmlspecialchars($room['room_number']) . "</h2>";
-        echo "<p>Price: $" . htmlspecialchars($room['price']) . "</p>";
-        echo "<p>Category: " . htmlspecialchars($room['category']) . "</p>";
-        echo "<form action='actions/confirm_booking.php' method='POST'>
-                <input type='hidden' name='room_id' value='" . htmlspecialchars($room['room_id']) . "'>
-                <label for='name'>Full Name:</label><br>
-                <input type='text' name='name' required><br>
-                <label for='email'>Email:</label><br>
-                <input type='email' name='email' required><br>
-                <label for='phone'>Phone:</label><br>
-                <input type='text' name='phone' required><br>
-                <button type='submit'>Confirm Booking</button>
-              </form>";
+        // Insert the booking into the recent_bookings table
+        // $stmt = $conn->prepare("INSERT INTO recent_bookings (name, email, room_id, room_number, price, booking_date) VALUES (?, ?, ?, ?, ?, NOW())");
+        // $stmt->execute([$name, $email, $room['room_id'], $room['room_number'], $room['price']]);
+
+        $stmt = $conn->prepare("INSERT INTO recent_bookings (name, email, room_id, room_number) VALUES (?, ?, ?, ?)");
+$stmt->execute([$name, $email, $room_id, $room_number]);
+
+        // Redirect to booking_success.php
+        header("Location: booking_success.php?booking_id=" . $conn->lastInsertId());
+        exit();
     } else {
-        echo "<p>Sorry, the selected room is unavailable.</p>";
+        // Room not found
+        echo "Error: Room not found!";
     }
-} else {
-    echo "<p>No room selected for booking.</p>";
 }
 ?>

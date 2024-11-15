@@ -1,31 +1,68 @@
 <?php
 session_start();
-include('config/database.php');
+include('../config/database.php');
 
-// Check if booking_id is passed
-if (isset($_GET['booking_id'])) {
-    $booking_id = $_GET['booking_id'];
+// Fetch booking ID from GET request
+$booking_id = $_GET['booking_id'] ?? null;
 
-    // Fetch booking details from the database
-    $sql = "SELECT * FROM bookings WHERE booking_id = :booking_id";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute(['booking_id' => $booking_id]);
-    $booking = $stmt->fetch(PDO::FETCH_ASSOC);
+// Initialize booking variable
+$booking = null;
 
-    if ($booking) {
-        // Display booking details and provide a link to the printable receipt
-        echo "<h2>Booking Confirmed</h2>";
-        echo "<p>Booking ID: " . htmlspecialchars($booking['booking_id']) . "</p>";
-        echo "<p>Name: " . htmlspecialchars($booking['name']) . "</p>";
-        echo "<p>Email: " . htmlspecialchars($booking['email']) . "</p>";
-        echo "<p>Phone: " . htmlspecialchars($booking['phone']) . "</p>";
-        echo "<p>Room Number: " . htmlspecialchars($booking['room_number']) . "</p>";
-        echo "<p>Price: $" . htmlspecialchars($booking['price']) . "</p>";
-        echo "<a href='print_receipt.php?booking_id=" . htmlspecialchars($booking['booking_id']) . "'>Print Receipt</a>";
-    } else {
-        echo "<p>Booking not found.</p>";
+if ($booking_id) {
+    try {
+        // Prepare and execute query to fetch booking details
+        $stmt = $conn->prepare("
+            SELECT rb.room_id, rb.room_number, r.price, rb.booking_date, rb.name AS user_name, rb.email AS user_email
+            FROM recent_bookings rb
+            JOIN rooms r ON rb.room_id = r.room_id
+            WHERE rb.booking_id = ?
+        ");
+        $stmt->execute([$booking_id]);
+        $booking = $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die("Error fetching booking details: " . $e->getMessage());
     }
-} else {
-    echo "<p>Booking ID is missing.</p>";
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Success</title>
+    <link rel="stylesheet" href="../assets/css/booking_success.css">
+</head>
+<body>
+    <header>
+        <h1>Booking Confirmation</h1>
+    </header>
+
+    <main>
+        <?php if ($booking): ?>
+            <div class="booking-details">
+                <h2>Thank you for your booking!</h2>
+                <p><strong>Room Number:</strong> <?php echo htmlspecialchars($booking['room_number']); ?></p>
+                <p><strong>Price:</strong> $<?php echo htmlspecialchars($booking['price']); ?></p>
+                <p><strong>Booked By:</strong> <?php echo htmlspecialchars($booking['user_name']); ?></p>
+                <p><strong>Email:</strong> <?php echo htmlspecialchars($booking['user_email']); ?></p>
+                <p><strong>Booking Date:</strong> <?php echo htmlspecialchars($booking['booking_date']); ?></p>
+            </div>
+
+            <div class="actions">
+                <button onclick="window.print()">Print Receipt</button>
+                <a href="../pages/basic_rooms.php" class="button">Back to Rooms</a>
+            </div>
+        <?php else: ?>
+            <div class="error-message">
+                <p>No booking details found. Please try again.</p>
+                <a href="../index.php" class="button">Back to Home</a>
+            </div>
+        <?php endif; ?>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Hotel Book. All rights reserved.</p>
+    </footer>
+</body>
+</html>
