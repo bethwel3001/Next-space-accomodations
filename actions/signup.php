@@ -25,7 +25,7 @@ $query->bindParam(':password', $password);
 // Execute the query
 if ($query->execute()) {
     echo "Signup successful!";
-    header("Location: ../index.php");  // Redirect after successful signup
+    header("Location: ../redirect.php");  // Redirect after successful signup
 } else {
     echo "Error: " . $query->errorInfo()[2];
 }

@@ -23,7 +23,7 @@ $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <header class="header">
         <div class="container">
             <div class="logo">
-                <h1>Basic Rooms</h1>
+                <h1>Available basic Rooms</h1>
             </div>
             <nav class="nav">
                 <a href="../index.php">Home</a>
