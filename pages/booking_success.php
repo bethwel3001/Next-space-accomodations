@@ -41,7 +41,7 @@ if ($booking_id) {
     <main>
         <?php if ($booking): ?>
             <div class="booking-details">
-                <h2>Thank you for your booking!</h2>
+                <h2>Thank you for booking with Next-space!</h2>
                 <p><strong>Room Number:</strong> <?php echo htmlspecialchars($booking['room_number']); ?></p>
                 <p><strong>Price:</strong> $<?php echo htmlspecialchars($booking['price']); ?></p>
                 <p><strong>Booked By:</strong> <?php echo htmlspecialchars($booking['user_name']); ?></p>

@@ -1,5 +1,4 @@
 <?php
-session_start();
 include('../config/database.php');
 
 // Fetch basic rooms from the database
@@ -23,7 +22,7 @@ $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <header class="header">
         <div class="container">
             <div class="logo">
-                <h1>VIP Rooms</h1>
+                <h1>Available VIP Rooms</h1>
             </div>
             <nav class="nav">
                 <a href="../index.php">Home</a>
@@ -43,27 +42,37 @@ $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Success Message -->
     <div class="success-message">
-        <p>You're lucky, there are rooms for you!</p>
+        <p>VIP rooms for you!</p>
     </div>
 
     <!-- Main Section -->
     <section class="rooms-section">
-        <h2>VIP Rooms</h2>
+        <h2>VIP Rooms @Next-space</h2>
+
+        <!-- Rooms Container -->
         <div class="rooms-container">
             <?php if (count($rooms) > 0): ?>
                 <?php foreach ($rooms as $room): ?>
                     <div class="room-card">
-                        <img src="https://images.unsplash.com/photo-1438954936179-786078772609?q=80&w=1345&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Room Image">
+                        <img src="https://images.unsplash.com/photo-1536494126589-29fadf0d7e3c?q=80&w=1336&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Room Image">
                     
                         <p>Room Number: <?php echo htmlspecialchars($room['room_number']); ?></p>
                         <p>Category: <?php echo htmlspecialchars($room['category']); ?></p>
                         <p>Price: $<?php echo htmlspecialchars($room['price']); ?></p>
-                        <h3>
+                        <h3><?php echo htmlspecialchars($room['features']); ?></h3>
+
+                        <!-- Booking Form -->
+                        <form action="book_room.php" method="POST">
+                            <input type="hidden" name="room_id" value="<?php echo htmlspecialchars($room['room_id']); ?>">
                             
-                            <?php echo htmlspecialchars($room['features']); ?>
-                        
-                        </h3>
-                        <button class="book-now">Book Now</button>
+                            <label for="name">Full Name:</label>
+                            <input type="text" id="name" name="name" required>
+                            
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                            
+                            <button type="submit" class="book-now">Book Now</button>
+                        </form>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -72,19 +81,29 @@ $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Hotel Book - Basic Rooms. All rights reserved.</p>
-            <p>
-                <a href="#">Back to Top</a> |
-                <a href="#">Facebook</a> |
-                <a href="#">Twitter</a> |
-                <a href="#">Instagram</a>
-            </p>
-            <p><strong>Phone:</strong> +123 456 789 | <strong>Email:</strong> info@hotelbook.com</p>
-        </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="column">
+        <h4>Quick Links</h4>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </div>
+    <div class="column">
+        <h4>Connect with Us</h4>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+    </div>
+    <div class="column">
+        <h4>Contact</h4>
+        <p><strong>Phone:</strong> +123 456 789</p>
+        <p><strong>Email:</strong> info@hotelbook.com</p>
+        <p><a href="#">Back to Top</a></p>
+    </div>
+</footer>
 
     <!-- JavaScript for Animations -->
     <script>

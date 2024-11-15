@@ -80,27 +80,50 @@ $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Hotel Book - Basic Rooms. All rights reserved.</p>
-            <p>
-                <a href="#">Back to Top</a> |
-                <a href="#">Facebook</a> |
-                <a href="#">Twitter</a> |
-                <a href="#">Instagram</a>
-            </p>
-            <p><strong>Phone:</strong> +123 456 789 | <strong>Email:</strong> info@hotelbook.com</p>
-        </div>
-    </footer>
+  <!-- Footer -->
+<footer class="footer">
+    <div class="column">
+        <h4>Quick Links</h4>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </div>
+    <div class="column">
+        <h4>Connect with Us</h4>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+    </div>
+    <div class="column">
+        <h4>Contact</h4>
+        <p><strong>Phone:</strong> +123 456 789</p>
+        <p><strong>Email:</strong> info@hotelbook.com</p>
+        <p><a href="#">Back to Top</a></p>
+    </div>
+</footer>
 
-    <!-- JavaScript for Animations -->
-    <script>
-        // Show success message for 4 seconds
+
+      <!-- JavaScript for Success Message -->
+      <script>
         const successMessage = document.querySelector('.success-message');
         setTimeout(() => {
             successMessage.style.display = 'none';
-        }, 4000);
-        // Add animations to room cards
+        }, 5000); // 5 seconds
+
+        let lastScrollTop = 0;
+    const header = document.querySelector('.header');
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+            header.classList.add('hidden'); // Hide navbar
+        } else {
+            header.classList.remove('hidden'); // Show navbar
+        }
+        lastScrollTop = scrollTop;
+    });
     </script>
 </body>
 </html>

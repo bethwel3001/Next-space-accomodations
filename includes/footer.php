@@ -3,78 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>footer demo</title>
+    <title>Document</title>
 </head>
 <body>
     <style>
-    .footer {
-    border-radius: 35px ;
-    background-color: #28a745;
-    border: 2px solid yellow;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-}
-
-.footer-content {
+/* Footer Styles */
+.footer {
+    background: rgba(0, 64, 128, 0.8); /* Transparent footer */
+    color: white;
+    padding: 10px 20px;
+    text-align: left;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between; /* Spread items evenly */
+    font-size: 14px;
+    animation: fadeIn 2s ease-in-out;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.footer-links a,
-.back-to-top a {
-    background-color: green;
-    border-radius: 10px ;
-    color: #aaa;
+.footer .column {
+    flex: 1 1 calc(33.33% - 10px); /* Flex for 3 columns */
+    margin: 5px;
+}
+
+.footer .column h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #b0e0ff;
+}
+
+.footer .column a {
+    color: white;
     text-decoration: none;
-    margin: 0 10px;
-    transition: color 0.3s;
+    margin-bottom: 8px;
+    display: block;
+    transition: color 0.3s, transform 0.3s;
 }
 
-.footer-links a:hover,
-.back-to-top a:hover {
-    color: #fff;
+.footer .column a:hover {
+    color: #b0e0ff;
+    transform: scale(1.1);
 }
 
-.social-icons a {
-    color: #aaa;
-    margin: 0 10px;
-    font-size: 1.5rem;
-    transition: color 0.3s;
-}
-
-.social-icons a:hover {
-    color: #28a745;
-}
-</style>
+.footer p, .footer a {
+    margin: 0;
+    line-height: 1.6;
+}</style>
+      <!-- Footer -->
 <footer class="footer">
-    <div class="footer-content">
-        <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Contact Us</a>
-        </div>
-        <div class="footer-contact">
-            <p>Call us: (123) 456-7890</p>
-            <p>Email: info@hotelbook.com</p>
-            <p>Address: 1234 Hotel Lane, City, Country</p>
-        </div>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
+    <div class="column">
+        <h4>Quick Links</h4>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
     </div>
-    <div class="back-to-top">
-        <a href="#top">Back to Top</a>
+    <div class="column">
+        <h4>Connect with Us</h4>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+    </div>
+    <div class="column">
+    <div class="social-icons">   
+<abbr title="Facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></abbr>
+<abbr title="Twitter/X"><a href="#"><i class="fab fa-twitter"></i></a></abbr>       
+<abbr title="Instagram"><a href="#"><i class="fab fa-instagram"></i></a></abbr>
+<abbr title="YouTube"><a href="#"><i class="fab fa-youtube"></i></a></abbr>
+<abbr title="LinkedIn"><a href="#"><i class="fab fa-linkedin-in"></i></a></abbr>
+        </div>
+        <h4>Contact</h4>
+        <p><strong>Phone:</strong> +123 456 789</p>
+        <p><strong>Email:</strong> info@hotelbook.com</p>
+        <p><a href="#">Back to Top</a></p>
     </div>
 </footer>
-  <script>document.querySelector('.back-to-top a').addEventListener('click', function(e) {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-</script>
 </body>
 </html>

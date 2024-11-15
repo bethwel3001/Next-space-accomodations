@@ -65,13 +65,6 @@
         <br><br>
         <h4>Be sure to catch up with our deals and offers through our media channels below!</h4><br>
         <br>
-        <div class="social-icons">   
-<abbr title="Facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></abbr>
-<abbr title="Twitter/X"><a href="#"><i class="fab fa-twitter"></i></a></abbr>       
-<abbr title="Instagram"><a href="#"><i class="fab fa-instagram"></i></a></abbr>
-<abbr title="YouTube"><a href="#"><i class="fab fa-youtube"></i></a></abbr>
-<abbr title="LinkedIn"><a href="#"><i class="fab fa-linkedin-in"></i></a></abbr>
-        </div>
     </section>
 
     <!-- Include Footer -->

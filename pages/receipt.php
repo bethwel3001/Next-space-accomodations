@@ -47,6 +47,7 @@ if (!$booking) {
 </head>
 <body>
     <div class="receipt">
+        <h1 style="color: red;">Next-space accomodations</h1>
         <h1>Booking Receipt</h1>
         <div class="details">
             <p><strong>Room Number:</strong> <?php echo htmlspecialchars($booking['room_number']); ?></p>
@@ -56,7 +57,7 @@ if (!$booking) {
             <p><strong>Features:</strong> <?php echo htmlspecialchars($booking['features']); ?></p>
         </div>
         <div class="button">
-            <button onclick="window.print()">Print Receipt</button>
+            <button onclick="window.print()">Print your Receipt</button>
         </div>
     </div>
 </body>

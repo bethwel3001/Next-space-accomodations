@@ -1,39 +1,56 @@
-/* General Styling */
+/* Global Styles */
 body {
+    font-family: 'Arial', sans-serif;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f9f9f9;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-/* Header */
+/* Header Styles */
 .header {
-    background: #333;
-    color: #fff;
-    padding: 15px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background: rgba(0, 64, 128, 0.8); /* Transparent background */
+    color: white;
+    padding: 15px 20px;
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: top 0.3s ease, background 0.3s ease;
+}
+
+.header.hidden {
+    top: -70px; /* Hide navbar when scrolling down */
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header .logo h1 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 24px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.nav {
+    display: flex;
+    gap: 15px;
 }
 
 .nav a {
-    color: #fff;
-    margin: 0 15px;
+    color: white;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.nav a:hover {
+    background-color: #005599;
+    transform: scale(1.1);
 }
 
 .user-menu {
@@ -41,19 +58,25 @@ body {
 }
 
 .user-icon {
-    font-size: 1.5rem;
+    font-size: 24px;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.user-icon:hover {
+    transform: rotate(15deg);
 }
 
 .dropdown {
     display: none;
     position: absolute;
-    background: #fff;
-    color: #000;
-    padding: 10px;
-    border: 1px solid #ddd;
     top: 30px;
     right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 10;
 }
 
@@ -63,67 +86,181 @@ body {
 
 /* Success Message */
 .success-message {
-    border-radius: 30px;
-    background: #4caf50;
-    color: #fff;
+    background-color: #e0ffe0;
+    color: #007700;
     text-align: center;
-    padding: 10px 0;
-    animation: fadeout 4s forwards;
+    padding: 15px;
+    border: 1px solid #b0ffb0;
+    border-radius: 8px;
+    margin: 15px;
+    animation: slideIn 0.5s ease-out;
 }
 
-/* Room Cards */
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Rooms Section */
+.rooms-section {
+    text-align: center;
+    padding: 20px;
+}
+
+.rooms-section h2 {
+    font-size: 28px;
+    color: #004080;
+    margin-bottom: 20px;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
 .rooms-container {
-    display: grid;
-    border-radius: 30px;
-    border: 3px solid #4caf50;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
-    padding: 20px 0;
 }
 
 .room-card {
-    border-radius: 30px;
-    border: 2px solid #bb0faa;
-    background: #fff;
-    /* border: 1px solid #ddd; */
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 200px;
     padding: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.room-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s ease;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 .room-card img {
     width: 100%;
-    border-radius: 20px;
-    height: 200px;
-    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
-/* Footer */
-.footer {
-    background: #222;
-    color: #fff;
-    text-align: center;
-    padding: 15px 0;
-    position: relative;
-}
-
-.footer a {
-    color: #4caf50;
-    text-decoration: none;
-}
-
-.footer p {
+.room-card p {
+    font-size: 14px;
     margin: 5px 0;
 }
 
-/* Fadeout Animation */
-@keyframes fadeout {
-    0% { display: block; opacity: 1; }
-    100% { display: none; opacity: 0; }
+.room-card h3 {
+    font-size: 16px;
+    margin: 10px 0;
 }
+
+.room-card button {
+    background: #004080;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.room-card button:hover {
+    background: #003060;
+    transform: scale(1.1);
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #f4f8ff;
+}
+/* Footer Styles */
+.footer {
+    background: rgba(0, 64, 128, 0.8); /* Transparent footer */
+    color: white;
+    padding: 10px 20px;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Spread items evenly */
+    font-size: 14px;
+    animation: fadeIn 2s ease-in-out;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.footer .column {
+    flex: 1 1 calc(33.33% - 10px); /* Flex for 3 columns */
+    margin: 5px;
+}
+
+.footer .column h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #b0e0ff;
+}
+
+.footer .column a {
+    color: white;
+    text-decoration: none;
+    margin-bottom: 8px;
+    display: block;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.footer .column a:hover {
+    color: #b0e0ff;
+    transform: scale(1.1);
+}
+
+.footer p, .footer a {
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Small Screen Adjustments */
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer .column {
+        flex: 1 1 100%;
+        margin: 5px 0;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Small Screen Adjustments */
+@media (max-width: 768px) {
+    .header .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    .rooms-container {
+        gap: 15px;
+    }
+    .room-card {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+/* Responsive Design */

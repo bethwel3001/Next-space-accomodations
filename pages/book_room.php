@@ -15,9 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($room) {
         // Insert the booking into the recent_bookings table
-        // $stmt = $conn->prepare("INSERT INTO recent_bookings (name, email, room_id, room_number, price, booking_date) VALUES (?, ?, ?, ?, ?, NOW())");
-        // $stmt->execute([$name, $email, $room['room_id'], $room['room_number'], $room['price']]);
-
         $stmt = $conn->prepare("INSERT INTO recent_bookings (name, email, room_id, room_number) VALUES (?, ?, ?, ?)");
 $stmt->execute([$name, $email, $room_id, $room_number]);
 
