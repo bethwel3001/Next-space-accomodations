@@ -1,37 +1,22 @@
 <!-- pages/premium_rooms.php -->
-<?php
-session_start();
-include('../config/database.php');
+<link rel="stylesheet" href="../assets/css/premium_navbar.css">
 
-$category = 'premium';
-$sql = "SELECT * FROM rooms WHERE category='$category'";
-$result = $conn->query($sql);
-?>
-<?php include('../includes/header.php'); ?>
-
-<section class="section rooms">
-    <h2>Premium Rooms</h2>
-    <div class="room-list">
-        <?php
-       // Assume $conn is your database connection and $stmt is your prepared statement
-       $stmt = $conn->prepare("SELECT * FROM rooms WHERE category = 'premium'");
-       $stmt->execute();
-       
-       $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
-       
-       if (count($rooms) > 0) {
-           foreach ($rooms as $room) {
-               echo "<div class='room-card'>"; // Customize your room card output here
-               echo "<h3>" . htmlspecialchars($room['room_number']) . "</h3>";
-               echo "<p>Price: $" . htmlspecialchars($room['price']) . "</p>";
-               echo "<button>Book Now</button>";
-               echo "</div>";
-           }
-       } else {
-           echo "<p>No premium rooms available at this time.</p>";
-       }
-       ?>
+<div class="navbar-premium">
+    <a href="index.php" class="logo">HotelBook - Premium Rooms</a>
+    <ul>
+        <li><a href="home.php">Home</a></li>
+        <li><a href="about.php">About</a></li>
+        <li><a href="services.php">Services</a></li>
+        <li><a href="contact.php">Contact</a></li>
+    </ul>
+    <div class="profile">
+        <span class="profile-icon">👤</span>
+        <div class="dropdown">
+            <a href="#">Profile</a>
+            <a href="#">Settings</a>
+            <a href="logout.php">Logout</a>
+        </div>
     </div>
-</section>
-
+</div>
+<!-- Room Content Here -->
 <?php include('../includes/footer.php'); ?>
