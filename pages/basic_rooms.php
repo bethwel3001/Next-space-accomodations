@@ -1,83 +1,99 @@
-<!-- pages/basic_rooms.php -->
 <?php
 session_start();
 include('../config/database.php');
 
+// Fetch basic rooms from the database
 $category = 'basic';
-$stmt = $conn->prepare("SELECT room_number, name, category, price FROM rooms WHERE category = ?");
-// $stmt->execute([$category]);
-
+$stmt = $conn->prepare("SELECT room_id, features, category, price, room_number FROM rooms WHERE category = ?");
+$stmt->execute([$category]);
 $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
-
-<link rel="stylesheet" href="../assets/css/room_styles.css">
-
-<!-- Navbar -->
-<div class="navbar">
-    <a href="../index.php" class="logo">HotelBook - Basic Rooms</a>
-    <ul>
-        <li><a href="../home.php">Home</a></li>
-        <li><a href="../about.php">About</a></li>
-        <li><a href="../services.php">Services</a></li>
-        <li><a href="../contact.php">Contact</a></li>
-    </ul>
-    <div class="profile-dropdown">
-    <button id="profileDropdownButton" class="profile-btn">👤</button>
-    <div id="profileMenu" class="profile-menu">
-        <p>Welcome, <?php echo htmlspecialchars($_SESSION['username'] ?? 'Guest'); ?></p>
-        <hr>
-        <a href="../pages/profile.php">View Details</a>
-        <a href="../actions/logout.php">Logout</a>
-    </div>
-</div>
-</div>
-
-<!-- Room Cards -->
-<section class="container">
-    <h2>Basic Rooms</h2>
-    <div class="room-list">
-    <?php if (count($rooms) > 0): ?>
-        <?php foreach ($rooms as $room): ?>
-            <div class="room-card">
-                <img src="<?php echo htmlspecialchars($room['image_url']); ?>" alt="Room Image">
-                <div class="room-card-content">
-                    <h3><?php echo htmlspecialchars($room['name']); ?></h3>
-                    <p>Price: $<?php echo htmlspecialchars($room['price']); ?></p>
-                    <p><?php echo htmlspecialchars($room['features']); ?></p>
-                    <button class="book-btn">Book Now</button>
-                </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Rooms</title>
+    <link rel="stylesheet" href="../assets/css/room_styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Basic Rooms</h1>
             </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>No rooms available at this time.</p>
-    <?php endif; ?>
-</div>
-</section>
+            <nav class="nav">
+                <a href="../index.php">Home</a>
+                <a href="../about.php">About</a>
+                <a href="../contact.php">Contact</a>
+                <div class="user-menu">
+                    <i class="fas fa-user-circle user-icon"></i>
+                    <div class="dropdown">
+                        <p><strong>Name:</strong> John Doe</p>
+                        <p><strong>Email:</strong> john@example.com</p>
+                        <p><a href="../actions/logout.php" class="logout-btn">Logout</a></p>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-<!-- Footer -->
-<div class="footer">
-    <ul class="footer-links">
-        <li><a href="#top">Back to Top</a></li>
-        <li><a href="https://facebook.com">Facebook</a></li>
-        <li><a href="tel:+1234567890">Phone: +1234567890</a></li>
-    </ul>
-    <p>&copy; 2024 HotelBook</p>
-</div>
-<script>document.addEventListener('DOMContentLoaded', () => {
-    const profileButton = document.getElementById('profileDropdownButton');
-    const profileMenu = document.getElementById('profileMenu');
+    <!-- Success Message -->
+    <div class="success-message">
+        <p>You're lucky, there are rooms for you!</p>
+    </div>
 
-    profileButton.addEventListener('click', () => {
-        profileMenu.classList.toggle('show');
-    });
+    <!-- Main Section -->
+    <section class="rooms-section">
+        <h2>Basic Rooms</h2>
+        <div class="rooms-container">
+            <?php if (count($rooms) > 0): ?>
+                <?php foreach ($rooms as $room): ?>
+                    <div class="room-card">
+                        <img src="https://plus.unsplash.com/premium_photo-1664392416854-d6704df91c97?q=80&w=1323&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Room Image">
+                    
+                        <p>Room Number: <?php echo htmlspecialchars($room['room_number']); ?></p>
+                        <p>Category: <?php echo htmlspecialchars($room['category']); ?></p>
+                        <p>Price: $<?php echo htmlspecialchars($room['price']); ?></p>
+                        <h3>
+                            
+                            <?php echo htmlspecialchars($room['features']); ?>
+                        
+                        </h3>
+                        <button class="book-now">Book Now</button>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No rooms available at the moment.</p>
+            <?php endif; ?>
+        </div>
+    </section>
 
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (event) => {
-        if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
-            profileMenu.classList.remove('show');
-        }
-    });
-});
-</script>
-<?php 
-// include('../includes/footer.php'); ?>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Hotel Book - Basic Rooms. All rights reserved.</p>
+            <p>
+                <a href="#">Back to Top</a> |
+                <a href="#">Facebook</a> |
+                <a href="#">Twitter</a> |
+                <a href="#">Instagram</a>
+            </p>
+            <p><strong>Phone:</strong> +123 456 789 | <strong>Email:</strong> info@hotelbook.com</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Animations -->
+    <script>
+        // Show success message for 4 seconds
+        const successMessage = document.querySelector('.success-message');
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 4000);
+        // Add animations to room cards
+    </script>
+</body>
+</html>

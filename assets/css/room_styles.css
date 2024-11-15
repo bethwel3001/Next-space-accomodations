@@ -1,231 +1,129 @@
-/* assets/css/room_styles.css */
-
-/* General Room Page Styling */
+/* General Styling */
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
 }
 
 .container {
-    width: 100%;
     max-width: 1200px;
-    margin: auto;
-    padding: 20px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
-/* Navbar Styling */
-.navbar {
+/* Header */
+.header {
+    background: #333;
+    color: #fff;
+    padding: 15px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-.navbar a.logo {
+.header .logo h1 {
+    margin: 0;
     font-size: 1.5rem;
+}
+
+.nav a {
     color: #fff;
+    margin: 0 15px;
     text-decoration: none;
+    font-size: 0.9rem;
 }
 
-.navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 15px;
+.user-menu {
+    position: relative;
 }
 
-.navbar ul li a {
-    color: #fff;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.navbar ul li a:hover {
-    color: #ffd700;
-}
-
-/* Profile Dropdown Styling */
-.navbar .profile-icon {
+.user-icon {
+    font-size: 1.5rem;
     cursor: pointer;
 }
 
-.navbar .dropdown a:hover {
-    background-color: #444;
+.dropdown {
+    display: none;
+    position: absolute;
+    background: #fff;
+    color: #000;
+    padding: 10px;
+    border: 1px solid #ddd;
+    top: 30px;
+    right: 0;
+    z-index: 10;
+}
+
+.user-menu:hover .dropdown {
+    display: block;
+}
+
+/* Success Message */
+.success-message {
+    border-radius: 30px;
+    background: #4caf50;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    animation: fadeout 4s forwards;
 }
 
 /* Room Cards */
-.room-list {
-    display: flex;
-    flex-wrap: wrap;
+.rooms-container {
+    display: grid;
+    border-radius: 30px;
+    border: 3px solid #4caf50;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-    justify-content: center;
+    padding: 20px 0;
 }
 
 .room-card {
-    width: 100%;
-    max-width: 250px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    animation: fadeIn 0.8s ease-in;
+    border-radius: 30px;
+    border: 2px solid #bb0faa;
+    background: #fff;
+    /* border: 1px solid #ddd; */
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .room-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
 }
 
 .room-card img {
     width: 100%;
-    height: auto;
+    border-radius: 20px;
+    height: 200px;
+    object-fit: cover;
 }
 
-.room-card-content {
-    padding: 15px;
-}
-
-.room-card h3 {
-    font-size: 1.25rem;
-    color: #333;
-}
-
-.room-card p {
-    color: #666;
-    margin: 10px 0;
-}
-
-.room-card .book-btn {
-    display: inline-block;
-    padding: 8px 12px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.room-card .book-btn:hover {
-    background-color: #ffd700;
-}
-
-/* Footer Styling */
+/* Footer */
 .footer {
-    background-color: #222;
+    background: #222;
     color: #fff;
     text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-}
-
-.footer p {
-    margin: 0;
-    color: #ddd;
-}
-
-.footer .footer-links {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-}
-
-.footer .footer-links a {
-    color: #ddd;
-    text-decoration: none;
-}
-
-.footer .footer-links a:hover {
-    color: #ffd700;
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@media (max-width: 768px) {
-    .room-list {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .navbar ul {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-/* Profile Dropdown */
-.profile-dropdown {
+    padding: 15px 0;
     position: relative;
 }
 
-.profile-btn {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-.profile-menu {
-    display: none;
-    position: absolute;
-    top: 40px;
-    right: 0;
-    background-color: #444;
-    color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    width: 200px;
-    z-index: 1000;
-}
-
-.profile-menu p {
-    margin: 0;
-    padding: 5px 10px;
-    font-size: 1rem;
-    color: #ffd700;
-}
-
-.profile-menu a {
-    display: block;
-    padding: 8px 10px;
-    color: #fff;
+.footer a {
+    color: #4caf50;
     text-decoration: none;
-    transition: background-color 0.3s;
 }
 
-.profile-menu a:hover {
-    background-color: #333;
+.footer p {
+    margin: 5px 0;
 }
 
-/* Show dropdown on button click */
-.profile-dropdown.show .profile-menu {
-    display: block;
-}
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.room-card {
-    animation: fadeIn 0.8s ease-in-out;
-    transform-origin: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.room-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+/* Fadeout Animation */
+@keyframes fadeout {
+    0% { display: block; opacity: 1; }
+    100% { display: none; opacity: 0; }
 }

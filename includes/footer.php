@@ -9,6 +9,7 @@
     <style>
     .footer {
     border-radius: 35px ;
+    background-color: #28a745;
     border: 2px solid yellow;
     background-color: #333;
     color: #fff;
